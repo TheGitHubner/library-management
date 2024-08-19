@@ -239,6 +239,46 @@
         }
     ]
    ```
+   
+* Criação de empréstimo [POST]: `/emprestimos`
+  * Corpo da requisição
+   ```
+    {
+        "usuarioId": 1,
+        "livroId": 1,
+        "status": "ABERTO",
+        "dataEmprestimo": "25/05/2024",
+        "dataDevolucao": "25/09/2024"
+    }
+    ```
+   * Resposta
+    ```
+    {
+        "id": 1,
+        "usuario": {
+            "id": 1,
+            "nome": "Emily",
+            "email": "teste@gmail.com",
+            "dataCadastro": "20/02/2022",
+            "telefone": "44999802514"
+        },
+        "livro": {
+            "id": 1,
+            "titulo": "Senhor dos Aneis",
+            "autor": "Tolkien",
+            "isbn": "789456789",
+            "dataPublicacao": "25/05/2000",
+            "categoria": "Aventura"
+        },
+        "dataEmprestimo": "25/05/2024",
+        "dataDevolucao": "25/09/2024",
+        "status": "ABERTO"
+    }
+    ```
+   * Observações:
+     * Data deve ser enviada no formato "DD/MM/AAAA"
+     * Status possíveis para um empréstimo: ABERTO ou FINALIZADO
+   
 
 * Editar empréstimo [PUT]: `/emprestimos`
    * Corpo da requisição
