@@ -13,7 +13,7 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
                     "   COUNT(*) > 0 " +
                     " FROM emprestimo e " +
                     " WHERE e.usuario_id = :usuarioId " +
-                    "   AND e.status = 'RETIRADO' ")
+                    "   AND e.status = 'ABERTO' ")
     boolean existeEmprestimoPendenteByUsuarioId(@Param("usuarioId") Long usuarioId);
 
     @Query(nativeQuery = true,
@@ -21,7 +21,7 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
                     "   COUNT(*) > 0 " +
                     " FROM emprestimo e " +
                     " WHERE e.livro_id = :livroId " +
-                    "   AND e.status = 'RETIRADO' ")
+                    "   AND e.status = 'ABERTO' ")
     boolean existeEmprestimoPendenteByLivroId(@Param("livroId") Long livroId);
 
     @Modifying

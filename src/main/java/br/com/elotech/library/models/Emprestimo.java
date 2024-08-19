@@ -4,15 +4,17 @@ import br.com.elotech.library.models.enums.StatusEmprestimo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
+@Builder
 @Table(name = "emprestimo")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Emprestimo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

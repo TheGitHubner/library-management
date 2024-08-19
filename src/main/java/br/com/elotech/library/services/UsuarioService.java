@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -59,7 +58,7 @@ public class UsuarioService {
 
     public Usuario buscarUsuarioPorId(Long usuarioId) {
         return this.usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .orElse(null);
 
     }
 }

@@ -14,6 +14,7 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
             value = " WITH categorias_recomendadas AS " +
                     " ( " +
                     "   SELECT  " +
+                    "     l.id, " +
                     "     l.categoria " +
                     "   FROM emprestimo e  " +
                     "     JOIN livro l " +
@@ -24,6 +25,7 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
                     "   l.* " +
                     " FROM livro l " +
                     "   JOIN categorias_recomendadas cr  " +
-                    "     ON l.categoria LIKE cr.categoria ")
+                    "     ON l.categoria ILIKE '%' || cr.categoria || '%' " +
+                    "     AND l.id <> cr.id ")
     List<Livro> buscarRecomendacoesParaUsuario(@Param("usuarioId") Long usuarioId);
 }

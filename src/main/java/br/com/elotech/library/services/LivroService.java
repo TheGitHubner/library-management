@@ -52,16 +52,13 @@ public class LivroService {
 
     @Transactional
     public void deletarLivro(Long livroId) {
-        if (!this.livroRepository.existsById(livroId)) {
-            throw new RuntimeException("Livro não encontrado para realizar exclusão.");
+        if (this.livroRepository.existsById(livroId)) {
+            if (this.emprestimoService.existeEmprestimoPendenteByLivroId(livroId)) {
+                throw new RuntimeException("Livro não pode ser excluído pois existem cópias dele emprestadas.");
+            }
+            this.emprestimoService.deletarEmprestimosByLivroId(livroId);
+            this.livroRepository.deleteById(livroId);
         }
-
-        if (this.emprestimoService.existeEmprestimoPendenteByLivroId(livroId)) {
-            throw new RuntimeException("Livro não pode ser excluído pois existem cópias dele emprestadas.");
-        }
-
-        this.emprestimoService.deletarEmprestimosByLivroId(livroId);
-        this.livroRepository.deleteById(livroId);
     }
 
     public List<Livro> buscarLivrosGoogleBooks(String nomeLivro) {
@@ -144,8 +141,8 @@ public class LivroService {
         return this.livroRepository.buscarRecomendacoesParaUsuario(usuarioId);
     }
 
-    public Livro buscarUsuarioPorId(Long livroId) {
+    public Livro buscarLivroPorId(Long livroId) {
         return this.livroRepository.findById(livroId)
-                .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+                .orElse(null);
     }
 }

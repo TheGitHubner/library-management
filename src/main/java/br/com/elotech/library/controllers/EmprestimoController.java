@@ -1,6 +1,7 @@
 package br.com.elotech.library.controllers;
 
 import br.com.elotech.library.models.Emprestimo;
+import br.com.elotech.library.models.dtos.EmprestimoDTO;
 import br.com.elotech.library.services.EmprestimoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class EmprestimoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Emprestimo> criarEmprestimo(@RequestBody Emprestimo emprestimo) {
+    public ResponseEntity<Emprestimo> criarEmprestimo(@RequestBody EmprestimoDTO emprestimo) {
         return ResponseEntity.ok(this.emprestimoService.criarEmprestimo(emprestimo));
     }
 
@@ -33,5 +34,10 @@ public class EmprestimoController {
     @PutMapping("/atualizar")
     public ResponseEntity<Emprestimo> atualizarEmprestimo(@RequestBody Emprestimo emprestimo) {
         return ResponseEntity.ok(this.emprestimoService.atualizarEmprestimo(emprestimo));
+    }
+
+    @GetMapping("/{emprestimoId}")
+    public ResponseEntity<Emprestimo> buscarEmprestimoPorId(@PathVariable Long emprestimoId) {
+        return ResponseEntity.ok(this.emprestimoService.buscarEmprestimoPorId(emprestimoId));
     }
 }

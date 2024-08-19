@@ -36,8 +36,8 @@ public class LivroController {
     }
 
     @GetMapping("/{livroId}")
-    public ResponseEntity<Livro> buscarUsuarioPorId(@PathVariable Long livroId) {
-        return ResponseEntity.ok(this.livroService.buscarUsuarioPorId(livroId));
+    public ResponseEntity<Livro> buscarLivroPorId(@PathVariable Long livroId) {
+        return ResponseEntity.ok(this.livroService.buscarLivroPorId(livroId));
     }
 
     @DeleteMapping("/{livroId}")
