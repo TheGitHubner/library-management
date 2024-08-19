@@ -6,8 +6,6 @@
 
 ## Passo-a-passo para execução
 * Clonar o repositório:
-  * `git@github.com:TheGitHubner/library-management.git`
-  ou
   * `https://github.com/TheGitHubner/library-management.git`
 * Abrir um terminal na raíz do projeto e executar o comando:
   *  `docker-compose up`
